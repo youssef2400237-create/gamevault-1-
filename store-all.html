@@ -1,0 +1,227 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Store All - GameVault</title>
+    <link rel="stylesheet" href="../styles/main.css" />
+    <link rel="stylesheet" href="../styles/store.css" />
+    <style>
+      .page-title-small {
+        margin-top: 1rem;
+      }
+      .card {
+        background: var(--secondary-bg);
+        border: 1px solid rgba(0, 212, 255, 0.15);
+        border-radius: 12px;
+        padding: 1rem;
+      }
+      .games-table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 1rem;
+      }
+      .games-table th,
+      .games-table td {
+        padding: 0.75rem 0.5rem;
+        border: 1px solid rgba(255, 255, 255, 0.12);
+        text-align: left;
+      }
+      .games-toolbar {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: space-between;
+        gap: 0.75rem;
+        margin-bottom: 1rem;
+      }
+      .games-toolbar .btn {
+        margin: 0;
+      }
+      .form-row {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+        gap: 0.75rem;
+      }
+      .form-row input,
+      .form-row select {
+        width: 100%;
+        padding: 0.5rem;
+        border-radius: 8px;
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        background: var(--primary-bg);
+        color: #fff;
+      }
+      .modal-overlay {
+        position: fixed;
+        inset: 0;
+        background: rgba(0, 0, 0, 0.65);
+        z-index: 999;
+        display: none;
+        align-items: center;
+        justify-content: center;
+      }
+      .modal {
+        background: var(--secondary-bg);
+        border-radius: 12px;
+        width: min(95vw, 620px);
+        max-height: 90vh;
+        overflow: auto;
+        box-shadow: var(--shadow-neon);
+        padding: 1rem 1.25rem;
+      }
+      .modal h3 {
+        margin: 0 0 0.75rem;
+      }
+      .modal-close {
+        border: none;
+        background: transparent;
+        color: #fff;
+        font-size: 1.4rem;
+        cursor: pointer;
+        position: absolute;
+        top: 10px;
+        right: 12px;
+      }
+      .hidden {
+        display: none !important;
+      }
+      .info-line {
+        margin: 0.45rem 0;
+      }
+    </style>
+  </head>
+  <body>
+    <aside class="sidebar">
+      <div class="sidebar-header">
+        <h2 class="logo"><i class="fas fa-gamepad"></i> GameVault</h2>
+      </div>
+      <nav class="sidebar-nav">
+        <a href="index.html" class="nav-item" data-page="home"
+          ><i class="fas fa-home"></i> Library</a
+        >
+        <a href="store.html" class="nav-item" data-page="store"
+          ><i class="fas fa-shopping-cart"></i> Store</a
+        >
+        <a href="trending.html" class="nav-item" data-page="trending"
+          ><i class="fas fa-fire"></i> Trending</a
+        >
+        <a href="friends.html" class="nav-item" data-page="friends"
+          ><i class="fas fa-users"></i> Friends</a
+        >
+        <a href="downloads.html" class="nav-item" data-page="downloads"
+          ><i class="fas fa-download"></i> Downloads</a
+        >
+      </nav>
+      <button class="launch-button">
+        <i class="fas fa-play"></i> LAUNCH GAME
+      </button>
+    </aside>
+
+    <header class="top-nav">
+      <div class="nav-breadcrumb">
+        <span class="breadcrumb-item">GameVault</span
+        ><span class="breadcrumb-divider">/</span
+        ><span class="breadcrumb-item">STORE ALL</span>
+      </div>
+      <div class="nav-search">
+        <input
+          type="search"
+          placeholder="Search for items..."
+          class="search-input"
+        />
+        <i class="fas fa-search"></i>
+      </div>
+      <div class="nav-icons">
+        <button class="icon-button cart-button">
+          <i class="fas fa-shopping-cart"></i><span class="cart-count">0</span>
+        </button>
+        <button class="icon-button">
+          <i class="fas fa-envelope"></i
+          ><span class="notification-badge">2</span>
+        </button>
+        <button class="icon-button"><i class="fas fa-cog"></i></button>
+        <button class="profile-button">
+          <i class="fas fa-user-circle"></i>
+        </button>
+      </div>
+    </header>
+
+    <main class="main-content">
+      <section class="trending-now">
+        <div class="section-header">
+          <h2>Full Games CRUD (10-20)</h2>
+          <a href="store.html" class="view-all">← Back to Store</a>
+        </div>
+        <div class="card">
+          <div class="games-toolbar">
+            <button id="addGameBtn" class="btn btn-primary">
+              + ADD NEW GAME
+            </button>
+            <span id="gameCountLabel"></span>
+          </div>
+
+          <table class="games-table" id="gamesTable">
+            <thead>
+              <tr>
+                <th>#</th>
+                <th>Name</th>
+                <th>Genre</th>
+                <th>Price</th>
+                <th>Rating</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody></tbody>
+          </table>
+
+          <p
+            id="hints"
+            style="margin-top: 0.8rem; color: #70e5ff; font-size: 0.92rem"
+          >
+            Games pool is limited to 20 entries; please keep at least 10 games
+            available for view.
+          </p>
+        </div>
+      </section>
+    </main>
+
+    <div class="modal-overlay" id="editModal">
+      <div class="modal" role="dialog" aria-modal="true">
+        <button class="modal-close" id="closeEditModal">×</button>
+        <h3 id="editModalTitle">Add Game</h3>
+        <div class="form-row">
+          <input id="gameNameInput" placeholder="Game Name" />
+          <input id="gameGenreInput" placeholder="Genre" />
+          <input id="gamePriceInput" placeholder="Price" />
+          <input id="gameRatingInput" placeholder="Rating (0-5)" />
+        </div>
+        <div style="margin-top: 0.75rem; text-align: right">
+          <button id="saveGameBtn" class="btn btn-primary">Save</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="modal-overlay" id="viewModal">
+      <div class="modal" role="dialog" aria-modal="true">
+        <button class="modal-close" id="closeViewModal">×</button>
+        <h3>Game Details</h3>
+        <div class="info-line">
+          <strong>Name:</strong> <span id="viewName"></span>
+        </div>
+        <div class="info-line">
+          <strong>Genre:</strong> <span id="viewGenre"></span>
+        </div>
+        <div class="info-line">
+          <strong>Price:</strong> $<span id="viewPrice"></span>
+        </div>
+        <div class="info-line">
+          <strong>Rating:</strong> <span id="viewRating"></span> / 5
+        </div>
+      </div>
+    </div>
+
+    <script src="../scriptes/main.js"></script>
+    <script src="../scriptes/store-all.js"></script>
+  </body>
+</html>
