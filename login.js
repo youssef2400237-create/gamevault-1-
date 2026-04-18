@@ -97,7 +97,7 @@ function isValidEmail(email) {
 function performLogin(email, password) {
   const loginButton = loginForm.querySelector(".btn");
   loginButton.textContent = "LOGGING IN...";
-  loginButton.disabled = true;
+  
 
   setTimeout(() => {
     if (email.toLowerCase() === "admin@gmail.com" && password === "admin123") {
@@ -106,12 +106,12 @@ function performLogin(email, password) {
         "success",
       );
       setTimeout(() => {
-        window.location.href = "dashboard.html";
+        window.location.href = "./pages/dashboard.html";
       }, 800);
     } else {
       showLoginNotification("Redirecting to home page...", "success");
       setTimeout(() => {
-        window.location.href = "dashboard.html";
+        window.location.href = "./pages/home.html";
       }, 800);
     }
   }, 700);
