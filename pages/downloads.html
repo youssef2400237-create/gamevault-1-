@@ -19,23 +19,23 @@
       </div>
       <nav class="sidebar-nav">
         <a href="home.html" class="nav-item" data-page="home">
-          <i class="fas fa-home"></i> Library
+          <i class="fas fa-home"></i> <span data-i18n="nav-library">Library</span>
         </a>
         <a href="store.html" class="nav-item" data-page="store">
-          <i class="fas fa-shopping-cart"></i> Store
+          <i class="fas fa-shopping-cart"></i> <span data-i18n="nav-store">Store</span>
         </a>
         <a href="trending.html" class="nav-item" data-page="trending">
-          <i class="fas fa-fire"></i> Trending
+          <i class="fas fa-fire"></i> <span data-i18n="nav-trending">Trending</span>
         </a>
         <a href="friends.html" class="nav-item" data-page="friends">
-          <i class="fas fa-users"></i> Friends
+          <i class="fas fa-users"></i> <span data-i18n="nav-friends">Friends</span>
         </a>
         <a href="downloads.html" class="nav-item active" data-page="downloads">
-          <i class="fas fa-download"></i> Downloads
+          <i class="fas fa-download"></i> <span data-i18n="nav-downloads">Downloads</span>
         </a>
       </nav>
       <button class="launch-button">
-        <i class="fas fa-play"></i> LAUNCH GAME
+        <i class="fas fa-play"></i> <span data-i18n="nav-launch">LAUNCH GAME</span>
       </button>
     </aside>
 
@@ -77,20 +77,20 @@
       
       <section class="downloads-header">
         <div class="downloads-info">
-          <h1>Downloads</h1>
+          <h1 data-i18n="downloads-title">Downloads</h1>
           <p>
             Manage your active bandwidth and game installations. Your hub for
             easy performance.
           </p>
         </div>
         <div class="global-space">
-          <h3>GLOBAL SPACE</h3>
+          <h3 data-i18n="global-space">GLOBAL SPACE</h3>
           <p class="space-info">142.5 MB/s</p>
         </div>
       </section>
 
       <section class="active-operations">
-        <h2>ACTIVE OPERATIONS</h2>
+        <h2 data-i18n="active-ops">ACTIVE OPERATIONS</h2>
         <div class="downloads-grid empty-state">
           <div class="download-card">
             <div class="download-info">
@@ -114,7 +114,7 @@
       </section>
 
       <section class="network-health">
-        <h2>NETWORK HEALTH</h2>
+        <h2 data-i18n="network-health">NETWORK HEALTH</h2>
         <div class="health-chart empty-state">
           <p>No network metrics available.</p>
         </div>
@@ -159,5 +159,6 @@
     </div>
 
     <script src="../scriptes/main.js"></script>
+    <script src="../scriptes/theme-lang.js"></script>
   </body>
 </html>

@@ -2016,3 +2016,204 @@ p {
     opacity: 1;
   }
 }
+
+/* ============================================
+   LIGHT MODE OVERRIDES
+   ============================================ */
+html.light-mode body,
+html.light-mode .main-content {
+  background-color: #eef2ff;
+  color: #0a0e27;
+}
+
+html.light-mode .sidebar {
+  background: #f5f7ff;
+  border-right-color: #0077cc;
+}
+
+html.light-mode .top-nav {
+  background: #f5f7ff;
+  border-bottom-color: #0077cc;
+}
+
+html.light-mode .logo,
+html.light-mode .sidebar-brand h1 {
+  background: linear-gradient(135deg, #0066bb, #cc0066);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+html.light-mode .nav-item {
+  color: #444465;
+}
+
+html.light-mode .nav-item:hover,
+html.light-mode .nav-item.active {
+  color: #0077cc;
+  background: rgba(0, 119, 204, 0.1);
+  border-left-color: #0077cc;
+}
+
+html.light-mode p,
+html.light-mode .hero-description,
+html.light-mode .page-description,
+html.light-mode .breadcrumb-item {
+  color: #555580;
+}
+
+html.light-mode .breadcrumb-item:first-child,
+html.light-mode .breadcrumb-divider {
+  color: #0077cc;
+}
+
+html.light-mode .search-input {
+  background: rgba(0, 119, 204, 0.05);
+  border-color: rgba(0, 119, 204, 0.3);
+  color: #0a0e27;
+}
+
+html.light-mode .search-input::placeholder { color: #888; }
+
+html.light-mode .icon-button,
+html.light-mode .icon-button:hover { color: #0077cc; }
+
+html.light-mode .profile-button {
+  background: rgba(0, 119, 204, 0.1);
+  border-color: #0077cc;
+  color: #0077cc;
+}
+
+html.light-mode .product-card,
+html.light-mode .product-card-small,
+html.light-mode .stream-card,
+html.light-mode .ranking-card,
+html.light-mode .friend-card,
+html.light-mode .download-card,
+html.light-mode .pending-item,
+html.light-mode .friends-list-section,
+html.light-mode .friend-requests,
+html.light-mode .suggested-friends,
+html.light-mode .recent-activity,
+html.light-mode .network-health,
+html.light-mode .on-the-radar,
+html.light-mode .library-content,
+html.light-mode .global-space {
+  background: #ffffff;
+  border-color: #0077cc;
+}
+
+html.light-mode .hero-section,
+html.light-mode .page-hero {
+  background: linear-gradient(135deg, rgba(0,119,204,0.07), rgba(204,0,102,0.05));
+  border-color: #0077cc;
+}
+
+html.light-mode .newsletter-section {
+  background: linear-gradient(135deg, rgba(0,119,204,0.08), rgba(204,0,102,0.07));
+  border-color: #0077cc;
+}
+
+html.light-mode .newsletter-input {
+  background: rgba(255,255,255,0.8);
+  border-color: #0077cc;
+  color: #0a0e27;
+}
+
+html.light-mode .newsletter-input::placeholder { color: #888; }
+
+html.light-mode .btn-primary {
+  background: linear-gradient(135deg, #0077cc, #005599);
+  color: #ffffff;
+}
+
+html.light-mode .btn-secondary {
+  color: #0077cc;
+  border-color: #0077cc;
+}
+
+html.light-mode .btn-secondary:hover { background: rgba(0,119,204,0.1); }
+
+html.light-mode .launch-button {
+  background: linear-gradient(135deg, #0077cc, #005599);
+  color: #fff;
+}
+
+html.light-mode .label-tag {
+  background: rgba(0,119,204,0.15);
+  border-color: #0077cc;
+  color: #0077cc;
+}
+
+html.light-mode .label-tag.secondary {
+  background: rgba(204,0,102,0.12);
+  border-color: #cc0066;
+  color: #cc0066;
+}
+
+html.light-mode .view-all { color: #0077cc; }
+html.light-mode .view-all:hover { color: #cc0066; }
+
+html.light-mode .price-tag { color: #0077cc; }
+html.light-mode .rating { color: #cc0066; }
+
+html.light-mode .tab-btn {
+  border-color: rgba(0,119,204,0.3);
+  color: #555580;
+}
+html.light-mode .tab-btn.active,
+html.light-mode .tab-btn:hover {
+  background: rgba(0,119,204,0.15);
+  border-color: #0077cc;
+  color: #0077cc;
+}
+
+html.light-mode .progress-bar { background: rgba(0,119,204,0.2); }
+
+html.light-mode .footer { border-top-color: #0077cc; }
+html.light-mode .footer-links a { color: #555580; }
+html.light-mode .footer-links a:hover { color: #0077cc; }
+
+html.light-mode .cart-modal-content { background: #f5f7ff; border-color: #0077cc; }
+html.light-mode .cart-modal-header { border-bottom-color: rgba(0,119,204,0.2); }
+html.light-mode .cart-modal-header h2 { color: #0077cc; }
+html.light-mode .cart-item-title { color: #0a0e27; }
+html.light-mode .cart-item-price { color: #0077cc; }
+html.light-mode .cart-footer { border-top-color: rgba(0,119,204,0.2); }
+html.light-mode .cart-total strong { color: #0077cc; }
+html.light-mode .quantity-btn { background: rgba(0,119,204,0.1); border-color: rgba(0,119,204,0.3); color: #0077cc; }
+
+html.light-mode ::-webkit-scrollbar-track { background: rgba(0,119,204,0.1); }
+html.light-mode ::-webkit-scrollbar-thumb { background: #0077cc; }
+html.light-mode ::-webkit-scrollbar-thumb:hover { background: #cc0066; }
+
+/* Dashboard light mode */
+html.light-mode .page-shell { background: #eef2ff; }
+html.light-mode .topbar { background: #f5f7ff; border-bottom: 1px solid rgba(0,119,204,0.2); }
+html.light-mode .panel-card,
+html.light-mode .stat-card,
+html.light-mode .settings-card,
+html.light-mode .modal-card { background: #ffffff; border-color: rgba(0,119,204,0.2); }
+html.light-mode .data-table th { background: rgba(0,119,204,0.07); color: #0a0e27; }
+html.light-mode .data-table td { border-bottom-color: rgba(0,119,204,0.1); color: #0a0e27; }
+html.light-mode .modal-overlay { background: rgba(0,0,0,0.5); }
+html.light-mode h1,html.light-mode h2,html.light-mode h3,html.light-mode h4 { color: #0a0e27; }
+
+/* Login light mode */
+html.light-mode .login_page {
+  background: rgba(240,244,255,0.95);
+  border-color: #0077cc;
+  color: #0a0e27;
+  box-shadow: 0 10px 40px rgba(0,119,204,0.2);
+}
+html.light-mode .login_page label { color: #0a0e27; }
+html.light-mode .login_page .inputs {
+  background: rgba(255,255,255,0.9);
+  border-color: rgba(0,119,204,0.4);
+  color: #0a0e27;
+}
+html.light-mode .login_page .btn { background: linear-gradient(135deg,#0077cc,#005599); }
+html.light-mode .login__header { color: #0a0e27; }
+html.light-mode .login__subtitle { color: #555580; }
+html.light-mode .login__footer p,
+html.light-mode .login__footer a { color: #0077cc; }

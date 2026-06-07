@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Admin Dashboard - NEON NEXUS</title>
+    <title>Admin Dashboard - GameVault</title>
     <link rel="stylesheet" href="../styles/main.css" />
     <link rel="stylesheet" href="../styles/dashboard.css" />
     <link
@@ -12,33 +12,40 @@
     />
   </head>
   <body>
-    <aside class="sidebar">
+    <!-- Mobile sidebar overlay -->
+    <div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+    <aside class="sidebar" id="sidebar">
       <div class="sidebar-brand">
         <div class="brand-icon">
           <i class="fas fa-gamepad"></i>
         </div>
         <div>
-          <h1>Game vault</h1>
+          <h1>GameVault</h1>
           <p>Admin Panel</p>
         </div>
+        <!-- Close button for mobile -->
+        <button class="sidebar-close-btn" id="sidebarCloseBtn" aria-label="Close sidebar">
+          <i class="fas fa-times"></i>
+        </button>
       </div>
 
       <nav class="sidebar-menu" aria-label="Main navigation">
         <button class="sidebar-link active" data-view="overview">
           <i class="fas fa-tachometer-alt"></i>
-          <span>Dashboard</span>
+          <span data-i18n="dash-title">Dashboard</span>
         </button>
         <button class="sidebar-link" data-view="users">
           <i class="fas fa-users"></i>
-          <span>Users</span>
+          <span data-i18n="stat-users">Users</span>
         </button>
         <button class="sidebar-link" data-view="games">
           <i class="fas fa-gamepad"></i>
-          <span>Games</span>
+          <span data-i18n="stat-games">Games</span>
         </button>
         <button class="sidebar-link" data-view="settings">
           <i class="fas fa-cog"></i>
-          <span>Settings</span>
+          <span data-i18n="settings">Settings</span>
         </button>
       </nav>
 
@@ -50,6 +57,11 @@
 
     <div class="page-shell">
       <header class="topbar">
+        <!-- Hamburger menu button (mobile only) -->
+        <button class="hamburger-btn" id="hamburgerBtn" aria-label="Open sidebar">
+          <i class="fas fa-bars"></i>
+        </button>
+
         <div class="topbar-search">
           <i class="fas fa-search"></i>
           <input
@@ -66,7 +78,7 @@
           <button class="profile-button" id="profileMenuButton">
             <span class="profile-avatar">A</span>
             <span class="profile-name">Admin</span>
-            <i class="fas fa-chevron-down"></i>
+            <i class="fas fa-chevron-down profile-chevron"></i>
           </button>
         </div>
       </header>
@@ -79,10 +91,10 @@
           </div>
           <div class="header-actions">
             <button class="btn btn-secondary" id="refreshStatsBtn">
-              <i class="fas fa-sync"></i> Refresh
+              <i class="fas fa-sync"></i> <span class="btn-text">Refresh</span>
             </button>
             <button class="btn btn-primary" id="openGameModalBtn">
-              <i class="fas fa-plus"></i> New game
+              <i class="fas fa-plus"></i> <span class="btn-text">New game</span>
             </button>
           </div>
         </section>
@@ -97,7 +109,7 @@
                 <i class="fas fa-users"></i>
               </div>
               <div>
-                <span class="stat-label">Total Users</span>
+                <span class="stat-label" data-i18n="stat-users">Total Users</span>
                 <h2 id="totalUsers">0</h2>
                 <span class="stat-change positive">+12.4%</span>
               </div>
@@ -107,7 +119,7 @@
                 <i class="fas fa-gamepad"></i>
               </div>
               <div>
-                <span class="stat-label">Total Games</span>
+                <span class="stat-label" data-i18n="stat-games">Total Games</span>
                 <h2 id="totalGames">0</h2>
                 <span class="stat-change positive">+8.9%</span>
               </div>
@@ -117,7 +129,7 @@
                 <i class="fas fa-chart-line"></i>
               </div>
               <div>
-                <span class="stat-label">Active Users</span>
+                <span class="stat-label" data-i18n="stat-active">Active Users</span>
                 <h2 id="activeUsers">0</h2>
                 <span class="stat-change positive">+4.2%</span>
               </div>
@@ -127,7 +139,7 @@
                 <i class="fas fa-dollar-sign"></i>
               </div>
               <div>
-                <span class="stat-label">Revenue</span>
+                <span class="stat-label" data-i18n="stat-revenue">Revenue</span>
                 <h2 id="totalRevenue">$0</h2>
                 <span class="stat-change negative">-1.7%</span>
               </div>
@@ -324,8 +336,52 @@
       </div>
     </div>
 
+    <!-- User Modal -->
+    <div class="modal-overlay hidden" id="userModal">
+      <div class="modal-card">
+        <div class="modal-header">
+          <div>
+            <h2 id="userModalTitle">Add new user</h2>
+            <p>Enter user details below.</p>
+          </div>
+          <button class="icon-button" id="closeUserModalBtn">
+            <i class="fas fa-times"></i>
+          </button>
+        </div>
+        <form id="userModalForm" class="modal-form">
+          <label class="floating-label">
+            <input type="text" id="modalUserName" required />
+            <span>Full name</span>
+          </label>
+          <label class="floating-label">
+            <input type="email" id="modalUserEmail" required />
+            <span>Email</span>
+          </label>
+          <label class="floating-label select-label">
+            <select id="modalUserRole">
+              <option value="member">Member</option>
+              <option value="admin">Admin</option>
+            </select>
+            <span>Role</span>
+          </label>
+          <label class="floating-label select-label">
+            <select id="modalUserStatus">
+              <option value="active">Active</option>
+              <option value="inactive">Inactive</option>
+            </select>
+            <span>Status</span>
+          </label>
+          <div class="modal-actions">
+            <button type="button" class="btn btn-secondary" id="userModalCancelBtn">Cancel</button>
+            <button type="submit" class="btn btn-primary" id="userModalSaveBtn">Save</button>
+          </div>
+        </form>
+      </div>
+    </div>
+
     <div class="toast-container" id="toastContainer"></div>
 
     <script src="../scriptes/dashboard.js"></script>
+    <script src="../scriptes/theme-lang.js"></script>
   </body>
 </html>

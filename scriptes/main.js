@@ -143,13 +143,22 @@ document.addEventListener("click", function (e) {
 
   
   if (e.target.closest(".newsletter-form .btn-primary")) {
-    const email = e.target
-      .closest(".newsletter-form")
-      .querySelector("input[type=email]").value;
-    if (email) {
-      showNotification(`Subscribed with ${email}!`, "success");
-    } else {
+    const form  = e.target.closest(".newsletter-form");
+    const input = form.querySelector("input[type=email]");
+    const errorSpan = form.querySelector(".newsletter-error");
+    const email = input ? input.value.trim() : "";
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+    if (!email) {
+      if (errorSpan) { errorSpan.textContent = "Please enter your email address."; errorSpan.style.display = "block"; }
       showNotification("Please enter your email", "error");
+    } else if (!emailRegex.test(email)) {
+      if (errorSpan) { errorSpan.textContent = "Please enter a valid email address (e.g. user@example.com)."; errorSpan.style.display = "block"; }
+      showNotification("Invalid email format", "error");
+    } else {
+      if (errorSpan) { errorSpan.style.display = "none"; errorSpan.textContent = ""; }
+      showNotification(`Subscribed with ${email}!`, "success");
+      if (input) input.value = "";
     }
   }
 

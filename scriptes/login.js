@@ -95,7 +95,7 @@ function isValidEmail(email) {
 
 // ============= Login Processing =============
 function performLogin(email, password) {
-  const loginButton = document.querySelector(".btn");
+  const loginButton = loginForm.querySelector(".btn");
   loginButton.textContent = "LOGGING IN...";
   
 
